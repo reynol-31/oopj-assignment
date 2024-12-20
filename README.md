@@ -1,4 +1,3 @@
-
 # Toll Management System
 
 ## Description
@@ -22,8 +21,10 @@ This project is a Java-based Toll Management System that allows users to manage 
    - **Methods:**
      - `getFee(String vehicleType): double`  
        Returns the toll fee for a given vehicle type.
-     - `displayFees(): void`  
-       Displays a table of toll fees for different vehicle types.
+     - `displayFeesAndTotal(): void`  
+       Displays a table of toll fees for different vehicle types and calculates the total fee dynamically by fetching data from the database.
+     - `calculateTotalFee(): double`  
+       Computes the total toll fee collected from the `vehicles` table in the database.
 
 ### 2. **TollRecordViewer**
    - **Methods:**
@@ -54,10 +55,28 @@ This project is a Java-based Toll Management System that allows users to manage 
 
 ## Database Schema
 
-- **Table:** `vehicles`
-  - `reg_no` (VARCHAR) - Registration number of the vehicle.
-  - `vehicle_type` (VARCHAR) - Type of vehicle (e.g., car, bus, truck).
-  - `created_at` (TIMESTAMP) - Timestamp of when the record was created.
+- **Table 1:** `vehicles`
+  ```sql
+  CREATE TABLE vehicles (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      reg_no VARCHAR(50),
+      vehicle_type VARCHAR(50),
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  ```
+
+- **Table 2:** `toll_plaza_info`
+  ```sql
+  CREATE TABLE toll_plaza_info (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(100),
+      location VARCHAR(255),
+      stretch VARCHAR(255),
+      tollable_length FLOAT,
+      fee_effective_date DATE,
+      due_date_of_toll_revision DATE
+  );
+  ```
 
 ---
 
@@ -66,9 +85,10 @@ This project is a Java-based Toll Management System that allows users to manage 
 1. Clone or download the project files.
 2. Configure the MySQL database:
    - Create a database named `toll`.
-   - Import the necessary table schema (ensure the `vehicles` table exists).
+   - Import the necessary table schemas (ensure the `vehicles` and `toll_plaza_info` tables exist).
 3. Update database credentials in the `DatabaseConnection` class.
 4. Compile and run the `TestClassJava` file.
 5. Interact with the menu to manage toll data and view information.
 
 ---
+
