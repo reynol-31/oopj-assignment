@@ -1,94 +1,94 @@
 # Toll Management System
 
-## Description
-This project is a Java-based Toll Management System that allows users to manage toll records, view fees, insert vehicle data, and display toll plaza information. It integrates with a MySQL database for storing and retrieving vehicle and toll data.
+## Overview
+
+The **Toll Management System** is a Java-based application designed to streamline toll collection processes, provide a summary of toll records, and manage toll plaza information. It incorporates features for vehicle data entry, fee calculation, toll plaza management, and record viewing. The application interacts with a MySQL database to store and retrieve toll-related data.
 
 ---
 
-## Software Requirements
+## Features
+
+- **Insert Vehicle Data:** Allows users to input vehicle registration numbers, types, and toll plaza details.
+- **View Toll Plaza Information:** Displays details of the toll plazas such as location, tollable length, and fee effective dates.
+- **View Toll Records:** Summarizes daily, monthly, and overall toll collection data, sorted by toll plaza.
+- **View Toll Fees:** Shows toll fees for various vehicle types.
+- **Add New Toll Plaza:** Dynamically add new toll plazas to the system.
+
+---
+
+## Installation and Setup
+
+1. Clone the repository or download the project files.
+2. Set up a MySQL database named `toll`.
+3. Use the following script to create the required tables:
+
+```sql
+CREATE TABLE vehicles (
+    reg_no VARCHAR(20),
+    vehicle_type VARCHAR(20),
+    toll_plaza VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE toll_plaza_info (
+    name VARCHAR(50),
+    location VARCHAR(100),
+    stretch VARCHAR(50),
+    tollable_length FLOAT,
+    fee_effective_date DATE,
+    due_date_of_toll_revision DATE
+);
+```
+
+4. Update the `DatabaseConnection` class with your MySQL credentials.
+5. Run the application in any Java IDE or compile it using the command line.
+
+---
+
+## Usage
+
+1. Navigate through the menu options in the main program to:
+   - Insert vehicle data.
+   - View toll plaza or toll records.
+   - Check the toll fees for various vehicle types.
+   - Add new toll plazas.
+2. Ensure the `vehicle_fees.txt` file is updated with vehicle types and their respective fees in the following format:
+   ```
+   car, 50
+   bus, 100
+   ```
+
+---
+
+## Technologies Used
 
 - **Programming Language:** Java
 - **Database:** MySQL
-- **Java Development Kit (JDK):** Version 8 or higher
-- **IDE:** Any Java IDE (e.g., IntelliJ IDEA, Eclipse, NetBeans)
-- **Database Driver:** MySQL Connector/J
+- **Libraries:** JDBC for database connectivity
 
 ---
 
-## Classes and Interfaces
+## Team Members
 
-### 1. **FeeViewer**
-   - **Methods:**
-     - `getFee(String vehicleType): double`  
-       Returns the toll fee for a given vehicle type.
-     - `displayFeesAndTotal(): void`  
-       Displays a table of toll fees for different vehicle types and calculates the total fee dynamically by fetching data from the database.
-     - `calculateTotalFee(): double`  
-       Computes the total toll fee collected from the `vehicles` table in the database.
-
-### 2. **TollRecordViewer**
-   - **Methods:**
-     - `viewRecords(): void`  
-       Retrieves and displays toll records from the database, including daily summaries, monthly summaries, and total amounts collected.
-
-### 3. **DatabaseConnection**
-   - **Methods:**
-     - `getConnection(): Connection`  
-       Establishes and returns a connection to the MySQL database.
-
-### 4. **InsertVehicle**
-   - **Methods:**
-     - `insertData(String regNo, String vehicleType): boolean`  
-       Inserts a new vehicle record into the database with the registration number, vehicle type, and the current timestamp.
-
-### 5. **TollPlazaInfo**
-   - **Methods:**
-     - `displayInfo(): void`  
-       Displays static information about the toll plaza, including location, stretch, and effective dates.
-
-### 6. **TestClassJava**
-   - **Methods:**
-     - `main(String[] args): void`  
-       Main entry point of the application. Provides a menu-driven interface to interact with the system functionalities.
+- **Reynol Dsouza** - [LinkedIn](https://www.linkedin.com/in/reynol-d-souza-593543290?utm_source=share\&utm_campaign=share_via\&utm_content=profile\&utm_medium=android_app)
+- **Manoj Kumar** - [LinkedIn](https://www.linkedin.com/in/manoj-kumar-72065728b?utm_source=share\&utm_campaign=share_via\&utm_content=profile\&utm_medium=android_app)
+- **Prajwal Shanbhag** - [LinkedIn](https://in.linkedin.com/in/prajwal-shanbhag-68a983224)
+- **Nishith Poojary** - [LinkedIn](https://www.linkedin.com/in/nishith-poojary-51278028b?utm_source=share\&utm_campaign=share_via\&utm_content=profile\&utm_medium=android_app)
 
 ---
 
-## Database Schema
+## Acknowledgements
 
-- **Table 1:** `vehicles`
-  ```sql
-  CREATE TABLE vehicles (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      reg_no VARCHAR(50),
-      vehicle_type VARCHAR(50),
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  );
-  ```
+We would like to extend our gratitude to the following for their guidance and technical assistance:
 
-- **Table 2:** `toll_plaza_info`
-  ```sql
-  CREATE TABLE toll_plaza_info (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(100),
-      location VARCHAR(255),
-      stretch VARCHAR(255),
-      tollable_length FLOAT,
-      fee_effective_date DATE,
-      due_date_of_toll_revision DATE
-  );
-  ```
+- **ChatGPT**
+- **YouTube Tutorials**
+- **Mr. Chandrashekar Rao Kuthyar** - [LinkedIn](https://www.linkedin.com/in/ckuthyar?utm_source=share\&utm_campaign=share_via\&utm_content=profile\&utm_medium=android_app)
+- **GeeksforGeeks** - [Website](https://www.geeksforgeeks.org/)
 
 ---
 
-## How to Run the Project
+## License
 
-1. Clone or download the project files.
-2. Configure the MySQL database:
-   - Create a database named `toll`.
-   - Import the necessary table schemas (ensure the `vehicles` and `toll_plaza_info` tables exist).
-3. Update database credentials in the `DatabaseConnection` class.
-4. Compile and run the `TestClassJava` file.
-5. Interact with the menu to manage toll data and view information.
-
----
+This project is developed for educational purposes. Please contact the authors for licensing queries.
 
