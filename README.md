@@ -54,8 +54,10 @@ CREATE TABLE toll_plaza_info (
    - Add new toll plazas.
 2. Ensure the `vehicle_fees.txt` file is updated with vehicle types and their respective fees in the following format:
    ```
-   car, 50
-   bus, 100
+   car, 60
+   bus, 200
+   Truck, 315
+   
    ```
 
 ---
