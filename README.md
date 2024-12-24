@@ -57,7 +57,6 @@ CREATE TABLE toll_plaza_info (
    car, 60
    bus, 200
    Truck, 315
-   
    ```
 
 ---
